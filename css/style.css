@@ -1,0 +1,562 @@
+#f2f-overlay {
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid #fff;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif !important;
+  position: fixed;
+  z-index: 666999;
+  top: 0;
+  left: 0;
+  padding: 7px;
+  background: #fbfbfb;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f8f8f8), color-stop(1, #ffffff));
+  background: -ms-linear-gradient(bottom, #f8f8f8, #ffffff);
+  background: -moz-linear-gradient(center bottom, #f8f8f8 0%, #ffffff 100%);
+  opacity: 0;
+  display: none;
+}
+#f2f-workingarea {
+  height: 0;
+  position: relative;
+}
+#f2f-workingarea #f2f-resize {
+  position: absolute;
+  height: 25px;
+  left: 50%;
+  bottom: -36px;
+  background: #fff;
+  padding: 5px 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.ui-selectable-helper {
+  position: absolute;
+  z-index: 667000;
+  border: 1px solid #a1aebb;
+  background: #425f77;
+  opacity: 0.4;
+  margin-left: 1px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #fff;
+}
+.ui-sortable-helper {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 999999;
+}
+.ui-draggable-dragging {
+  border: 3px solid #fff;
+  z-index: 700000 !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  max-width: 158px;
+  max-height: 139px;
+  height: auto;
+  width: auto;
+}
+.ui-draggable-dragging.allowed {
+  border-color: #FF0084;
+}
+.ui-state-default {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.65) inset !important;
+}
+.dragified {
+  position: relative;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+#selectionbar {
+  width: 74.25%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 30px;
+  background: red;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  display: none;
+}
+.drop-indicator {
+  width: 100%;
+  height: 100%;
+}
+.drop-indicator .center {
+  width: 180px;
+  margin: 0 auto;
+  padding: 15px 0;
+  zoom: 1;
+  padding-left: 60px;
+  background: url(http://crtvhd.crux.uberspace.de/flickr2facebook/img/drop-indicator.png) no-repeat left 15px;
+}
+.drop-indicator .center:before {
+  content: '';
+  display: block;
+}
+.drop-indicator .center:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.drop-indicator .center b {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 1px 0 #70321a;
+}
+.drop-indicator .center span {
+  display: block;
+  color: #743e19;
+  font-size: 12px;
+  font-weight: 500;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.4);
+}
+.drop-indicator .center span i {
+  font-style: normal;
+}
+.ui-state-hover .drop-indicator .center {
+  background-image: url(http://crtvhd.crux.uberspace.de/flickr2facebook/img/drop-indicator-active.png);
+}
+#f2f-dropzone {
+  width: 74.8%;
+  height: 70px;
+  float: left;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.6) inset;
+  position: relative;
+  border: 1px solid #fff;
+  padding: 0px;
+  background: url("//d26ecy1es9i5xz.cloudfront.net/images/backgrounds/wood-b49ee40a3eaafaa599b1758f4a3253acb944fc18-gz.jpg") center top;
+  background-size: 100% auto;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+#f2f-dropzone #f2f-success {
+  background: rgba(255, 255, 255, 0.5);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 7000;
+  text-align: center;
+}
+#f2f-dropzone #f2f-success span {
+  display: block;
+  color: #fff;
+  background: blue;
+  padding: 6px 10px;
+  left: 45%;
+  position: absolute;
+  top: 25%;
+}
+#f2f-dropzone .drop-placeholder {
+  width: 200px;
+  height: 220px;
+  float: left;
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) inset;
+  display: none;
+}
+#f2f-dropzone .drop-placeholder.visible {
+  display: block;
+}
+#f2f-dropzone .drop {
+  width: 200px;
+  height: 220px;
+  float: left;
+  position: relative;
+  overflow: visible;
+  -webkit-transition: background 0.3s ease-out;
+  -moz-transition: background 0.3s ease-out;
+  transition: background 0.3s ease-out;
+  display: block;
+}
+#f2f-dropzone .drop.checked .drop-image img,
+#f2f-dropzone .drop.ui-selecting .drop-image img,
+#f2f-dropzone .drop.ui-selected .drop-image img {
+  border-color: #FF0084 !important;
+}
+#f2f-dropzone .drop.uploading {
+  background: rgba(34, 34, 34, 0.25);
+  opacity: 1 !important;
+}
+#f2f-dropzone .drop.uploading .loader {
+  display: block;
+}
+#f2f-dropzone .drop.uploaded {
+  opacity: 1 !important;
+}
+#f2f-dropzone .drop.uploaded .loader {
+  display: block;
+  background: url(http://crtvhd.crux.uberspace.de/flickr2facebook/img/uploaded.png) no-repeat center 50%;
+  opacity: 1;
+}
+#f2f-dropzone .drop .loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(http://crtvhd.crux.uberspace.de/flickr2facebook/img/loader-uploader.gif) no-repeat center 50%, #000000;
+  opacity: 0.5;
+  display: none;
+}
+#f2f-dropzone .drop .drop-preview {
+  height: 150px;
+  width: 100%;
+  margin: 15px 0 5px 0;
+  position: relative;
+  text-align: center;
+}
+#f2f-dropzone .drop .drop-preview .drop-image {
+  display: inline-block;
+  height: auto;
+  margin: 0 auto;
+  max-height: 145px;
+  max-width: 164px;
+  min-height: 42px;
+  min-width: 64px;
+  position: relative;
+  text-align: center;
+}
+#f2f-dropzone .drop .drop-preview .drop-image img {
+  max-width: 158px;
+  max-height: 139px;
+  border: 3px solid #222;
+  margin: 0 auto;
+  display: block;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+#f2f-dropzone .drop .drop-preview .drop-image .drop-delete {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAABAAgMAAAAG4J09AAAACVBMVEUAAAD////CCgr718DLAAAAAXRSTlMAQObYZgAAAD1JREFUeF7ly6ENAEAIA8A3GDxLMA2CAZGM+aYpG2CouqTt20kIkAZYAhIEK47nfiSlQDvgDWgRrDie+24+dvAI6UPFypkAAAAASUVORK5CYII=") no-repeat scroll -9px -8px #222222;
+  border: 2px solid #444444;
+  border-radius: 16px 16px 16px 16px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  display: none;
+  height: 14px;
+  margin: -8px -8px 0 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  vertical-align: middle;
+  width: 14px;
+  z-index: 5000;
+}
+#f2f-dropzone .drop .drop-preview .drop-image .drop-delete span {
+  display: none;
+}
+#f2f-dropzone .drop .drop-meta {
+  position: relative;
+}
+#f2f-dropzone .drop .drop-meta textarea {
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 18px;
+  margin: 0;
+  resize: none;
+  overflow: hidden;
+  padding: 2px 4px;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 0 #000;
+  white-space: nowrap;
+  margin: 0 auto;
+  background: none;
+  border: none;
+  color: #fff;
+  width: 170px;
+  min-height: 18px;
+  display: block;
+}
+#f2f-dropzone .drop .drop-meta textarea:focus {
+  background: #f1f1f1;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.5) inset;
+  color: #222;
+  outline: none;
+  text-shadow: none;
+  overflow: auto;
+  border-radius: 2px;
+  white-space: pre-wrap;
+  z-index: 6000;
+  height: 36px;
+  position: absolute;
+  top: 0;
+  left: 10px;
+}
+#f2f-facebook {
+  width: 25%;
+  height: 100%;
+  float: right;
+  zoom: 1;
+  position: relative;
+}
+#f2f-facebook:before {
+  content: '';
+  display: block;
+}
+#f2f-facebook:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+#f2f-facebook.disabled .protector {
+  display: block !important;
+}
+#f2f-facebook .protector {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: auto;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 99999;
+  display: none;
+}
+#f2f-facebook .buttonbar {
+  text-align: center;
+  padding-top: 8px;
+}
+#f2f-facebook .buttonbar .button {
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  background: #4a85c9;
+  line-height: 14px;
+  padding: 10px 15px;
+  margin: 0 auto;
+  color: #fff;
+  display: inline-block;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #4a85c9;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #3e70c0), color-stop(1, #5395d0));
+  background: -ms-linear-gradient(bottom, #3e70c0, #5395d0);
+  background: -moz-linear-gradient(center bottom, #3e70c0 0%, #5395d0 100%);
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.3) inset;
+}
+#f2f-facebook .buttonbar .close-bookmarklet,
+#f2f-facebook .buttonbar span {
+  display: block;
+  font-size: 11px;
+  color: #868686;
+  line-height: 11px;
+  padding: 8px 10px;
+}
+#f2f-facebook .buttonbar .close-bookmarklet:hover {
+  background: none;
+  text-decoration: underline;
+  color: #868686;
+}
+.auth-facebook {
+  display: none;
+  opacity: 0;
+}
+.auth-facebook.init {
+  display: block;
+  opacity: 1;
+}
+.album-settings {
+  width: 272px;
+  margin: 0 auto;
+  display: none;
+  padding: 14px;
+}
+.album-settings.init {
+  display: block !important;
+}
+.album-settings.init .status {
+  display: block;
+  opacity: 1;
+}
+.album-settings.init .profile,
+.album-settings.init .album-information,
+.album-settings.init .album-url,
+.album-settings.init .buttonbar {
+  opacity: 0;
+}
+.album-settings.loaded {
+  display: block !important;
+}
+.album-settings.loaded .status {
+  display: none;
+}
+.album-settings.loaded .profile,
+.album-settings.loaded .album-information,
+.album-settings.loaded .album-url,
+.album-settings.loaded .buttonbar {
+  opacity: 1;
+}
+.album-settings .status {
+  display: none;
+  opacity: 0;
+  color: #717171;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  line-height: 22px;
+  font-style: italic;
+  text-align: center;
+}
+.album-settings .profile {
+  zoom: 1;
+  margin-bottom: 15px;
+}
+.album-settings .profile:before {
+  content: '';
+  display: block;
+}
+.album-settings .profile:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.album-settings .profile .profile-pic {
+  float: left;
+  width: 50px;
+  height: 50px;
+  background: url(https://graph.facebook.com/100000525367875/picture) left top;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.6) inset;
+  position: relative;
+  border: 1px solid #fff;
+}
+.album-settings .profile .profile-pic:hover:before {
+  opacity: 0;
+  -webkit-transition: 0.1s 0.2s ease-out;
+  -moz-transition: 0.1s 0.2s ease-out;
+  transition: 0.1s 0.2s ease-out;
+}
+.album-settings .profile .profile-pic:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 25px;
+  content: '';
+  opacity: 1;
+  -webkit-transition: 0.2s 0.2s ease-out;
+  -moz-transition: 0.2s 0.2s ease-out;
+  transition: 0.2s 0.2s ease-out;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background: rgba(0, 0, 0, 0);
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(255, 255, 255, 0)), color-stop(1, rgba(255, 255, 255, 0.3)));
+  background: -ms-linear-gradient(bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3));
+  background: -moz-linear-gradient(center bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+}
+.album-settings .profile .fb-user {
+  float: left;
+  margin-left: 18px;
+  padding-top: 12px;
+}
+.album-settings .profile .fb-user h2 {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.025em;
+  color: #636363;
+  margin: 0;
+  line-height: 12px;
+}
+.album-settings .profile .fb-user .change-user {
+  font-size: 12px;
+  color: #636363;
+  font-weight: 400;
+}
+.album-settings .profile .fb-user .change-user a {
+  color: #0063dc;
+  text-decoration: underline;
+}
+.album-settings .profile .fb-user .change-user a:hover {
+  background: none;
+}
+.album-settings .album-url {
+  padding: 8px 0 5px 0;
+}
+.album-settings .album-url .switch {
+  zoom: 1;
+  margin-bottom: 10px;
+}
+.album-settings .album-url .switch:before {
+  content: '';
+  display: block;
+}
+.album-settings .album-url .switch:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.album-settings .album-url .switch .toggle {
+  width: 51px;
+  height: 22px;
+  background: url(http://crtvhd.crux.uberspace.de/flickr2facebook/img/switch.png) no-repeat;
+  float: left;
+  margin-right: 14px;
+  cursor: pointer;
+}
+.album-settings .album-url .switch .toggle[data-state="on"] {
+  background-position: left top;
+}
+.album-settings .album-url .switch .toggle[data-state="off"] {
+  background-position: left -22px;
+}
+.album-settings .album-url .switch span {
+  font-size: 11px;
+  color: #717171;
+  letter-spacing: 0.04em;
+  line-height: 22px;
+}
+.album-settings input[type="text"],
+.album-settings textarea {
+  width: 270px;
+  background: #fff;
+  border: 1px solid #c5c5c5;
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.05) inset;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  font-size: 11px;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  color: #6f6e6e;
+  padding: 7px 10px;
+  margin: 5px auto;
+}
+.album-settings textarea {
+  height: 55px;
+  resize: none;
+}
+.album-settings input[disabled="disabled"] {
+  opacity: 0.5;
+}
