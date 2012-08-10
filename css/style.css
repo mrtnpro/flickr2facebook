@@ -1,3 +1,15 @@
+.clearfix {
+  zoom: 1;
+}
+.clearfix:before {
+  content: '';
+  display: block;
+}
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
+}
 #f2f-overlay {
   width: 100%;
   height: auto;
@@ -8,7 +20,7 @@
   z-index: 666999;
   top: 0;
   left: 0;
-  padding: 7px;
+  padding: 10px 0;
   background: #fbfbfb;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f8f8f8), color-stop(1, #ffffff));
   background: -ms-linear-gradient(bottom, #f8f8f8, #ffffff);
@@ -17,8 +29,30 @@
   display: none;
 }
 #f2f-workingarea {
-  height: 0;
   position: relative;
+  width: 100%;
+  zoom: 1;
+}
+#f2f-workingarea:before {
+  content: '';
+  display: block;
+}
+#f2f-workingarea:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+#f2f-workingarea.uploadDone #f2f-dropzone {
+  margin: 0;
+  background: none;
+  box-shadow: none;
+  border: none;
+}
+#f2f-workingarea.uploadDone .f2f-fluid-right {
+  width: 0;
+}
+#f2f-workingarea.uploadDone #f2f-facebook {
+  width: 0;
 }
 #f2f-workingarea #f2f-resize {
   position: absolute;
@@ -119,29 +153,43 @@
   font-style: normal;
 }
 .ui-state-hover .drop-indicator .center {
-  background-image: url(http://crtvhd.crux.uberspace.de/flickr2facebook/img/drop-indicator-active.png);
+  background-image: url('http://crtvhd.crux.uberspace.de/flickr2facebook/img/drop-indicator-active.png');
+}
+.f2f-fluid-left {
+  float: left;
+  margin-right: -332px;
+  width: 100%;
+}
+.f2f-fluid-right {
+  float: right;
+  width: 332px;
 }
 #f2f-dropzone {
-  width: 74.8%;
+  width: auto;
   height: 70px;
-  float: left;
+  float: none;
   overflow-y: auto;
   overflow-x: hidden;
   box-shadow: 0 0 14px rgba(0, 0, 0, 0.6) inset;
   position: relative;
   border: 1px solid #fff;
   padding: 0px;
-  background: url("//d26ecy1es9i5xz.cloudfront.net/images/backgrounds/wood-b49ee40a3eaafaa599b1758f4a3253acb944fc18-gz.jpg") center top;
-  background-size: 100% auto;
+  background-color: #b35c37;
+  background: url("http://crtvhd.crux.uberspace.de/flickr2facebook/img/wood.jpg") center top;
+  background-repeat: no-repeat;
+  background-size: auto;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
+  margin-right: 332px;
+  margin-left: 10px;
 }
 #f2f-dropzone #f2f-success {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(79, 142, 205, 0.3);
+  background: rgba(255, 255, 255, 0.2);
   height: 100%;
   left: 0;
   position: absolute;
@@ -153,11 +201,32 @@
 #f2f-dropzone #f2f-success span {
   display: block;
   color: #fff;
-  background: blue;
-  padding: 6px 10px;
+  font-weight: bold;
+  padding: 12px 20px 12px 55px;
   left: 45%;
   position: absolute;
-  top: 25%;
+  top: 18%;
+  border-radius: 3px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  background: url("http://crtvhd.crux.uberspace.de/flickr2facebook/img/uploaded.png") no-repeat scroll 15px 4px rgba(0, 0, 0, 0.5);
+}
+#f2f-dropzone #f2f-success span a {
+  background: #4a85c9;
+  padding: 6px 10px;
+  margin: 0 0 0 15px;
+  color: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #4a85c9;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #3e70c0), color-stop(1, #5395d0));
+  background: -ms-linear-gradient(bottom, #3e70c0, #5395d0);
+  background: -moz-linear-gradient(center bottom, #3e70c0 0%, #5395d0 100%);
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.3) inset;
 }
 #f2f-dropzone .drop-placeholder {
   width: 200px;
@@ -300,11 +369,12 @@
   left: 10px;
 }
 #f2f-facebook {
-  width: 25%;
+  width: auto;
   height: 100%;
   float: right;
   zoom: 1;
   position: relative;
+  margin: 0 20px;
 }
 #f2f-facebook:before {
   content: '';
@@ -331,6 +401,7 @@
 #f2f-facebook .buttonbar {
   text-align: center;
   padding-top: 8px;
+  width: 292px;
 }
 #f2f-facebook .buttonbar .button {
   font-size: 14px;
@@ -377,10 +448,10 @@
   opacity: 1;
 }
 .album-settings {
-  width: 272px;
+  width: 292px;
   margin: 0 auto;
   display: none;
-  padding: 14px;
+  padding: 0;
 }
 .album-settings.init {
   display: block !important;
@@ -394,6 +465,7 @@
 .album-settings.init .album-url,
 .album-settings.init .buttonbar {
   opacity: 0;
+  display: none;
 }
 .album-settings.loaded {
   display: block !important;
@@ -406,6 +478,7 @@
 .album-settings.loaded .album-url,
 .album-settings.loaded .buttonbar {
   opacity: 1;
+  display: block;
 }
 .album-settings .status {
   display: none;
@@ -552,6 +625,18 @@
   color: #6f6e6e;
   padding: 7px 10px;
   margin: 5px auto;
+  outline: none;
+  -webkit-transition: 0.5s 0.2s ease-out;
+  -moz-transition: 0.5s 0.2s ease-out;
+  transition: 0.5s 0.2s ease-out;
+}
+.album-settings input[type="text"]:focus,
+.album-settings textarea:focus {
+  border-color: #71b6f0;
+  box-shadow: 0 0 5px #71b6f0;
+  -webkit-transition: 0.5s 0.2s ease-out;
+  -moz-transition: 0.5s 0.2s ease-out;
+  transition: 0.5s 0.2s ease-out;
 }
 .album-settings textarea {
   height: 55px;
@@ -559,4 +644,9 @@
 }
 .album-settings input[disabled="disabled"] {
   opacity: 0.5;
+}
+@media only screen and (min-width: 1912px) {
+  #f2f-dropzone {
+    background-size: cover;
+  }
 }

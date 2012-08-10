@@ -110,55 +110,59 @@
 		var htmlBase = '\
 			<div id="f2f-overlay">\
 				<div id="f2f-workingarea">\
-					<div id="f2f-dropzone" data-state="closed">\
-						<!-- drops come here -->\
-						<div class="drop-indicator">\
-							<div class="center">\
-								<b>Drop your photos here</b>\
-								<span>' + ((jQuery.isArray(session)) ? '<i>' + session.length + '</i> photos already dropped' : 'You dropped no photo so far') + '</span>\
-							</div>\
-						</div>\
-					</div>\
-					<div id="f2f-facebook">\
-						<div class="protector"></div>\
-				        <div class="init-facebook buttonbar">\
-				        	<a id="init-facebook" class="button" href="#">Start editing your photos</a>\
-				        	<a class="close-bookmarklet" href="#">or close this bookmarklet</a>\
-				        </div>\
-				        <div class="auth-facebook buttonbar" >\
-				        	<a id="auth-facebook" class="button" href="#">Authenticate with facebook</a>\
-				        	<span>In order to use this app you need to authenticate with facebook</span>\
-				        </div>\
-				        <form class="album-settings" >\
-				        	<div class="status">Connecting to Facebook ...</div>\
-				        	<div class="profile">\
-				        		<div class="profile-pic"></div>\
-				        		<div class="fb-user">\
-				        			<h2>User Name</h2>\
-				        			<div class="change-user">Not you? <a href="#" id="f2f-logout">Logout from this account</a></div>\
-				        		</div>\
-				        	</div>\
-				        	<div class="album-information">\
-				        		<input type="text" id="album-name" placeholder="Your album name" />\
-				        		<textarea id="album-description" placeholder="Your album description"></textarea>\
-				        	</div>\
-				        	<div class="album-url">\
-				        		<div class="switch">\
-				        			<a class="toggle" data-state="off" id="add-to-photo" href="#" title="Toggle me"></a>\
-				        			<span>Add gallery link to each photo</span>\
-				        		</div>\
-				        		<div class="switch">\
-				        			<a class="toggle" data-state="off" id="add-to-album" href="#" title="Toggle me"></a>\
-				        			<span>Add gallery link to album description</span>\
-				        		</div>\
-				        		<input type="text" id="album-url" placeholder="e.g. www.flickr.com/photos/[username]" disabled="disabled" />\
-				        	</div>\
-				        	<div class="buttonbar">\
-				        		<a id="init-upload" class="button" href="#">Upload to Facebook</a>\
-				        		<a class="close-bookmarklet" href="#">or close this bookmarklet</a>\
-				        	</div>\
-				        </form>\
-					</div>\
+				    <div class="f2f-fluid-left">\
+    					<div id="f2f-dropzone" data-state="closed">\
+    						<!-- drops come here -->\
+    						<div class="drop-indicator">\
+    							<div class="center">\
+    								<b>Drop your photos here</b>\
+    								<span>' + ((jQuery.isArray(session)) ? '<i>' + session.length + '</i> photos already dropped' : 'You dropped no photo so far') + '</span>\
+    							</div>\
+    						</div>\
+    					</div>\
+    				</div>\
+    				<div class="f2f-fluid-right">\
+    					<div id="f2f-facebook">\
+    						<div class="protector"></div>\
+    				        <div class="init-facebook buttonbar">\
+    				        	<a id="init-facebook" class="button" href="#">Start editing your photos</a>\
+    				        	<a class="close-bookmarklet" href="#">or close this bookmarklet</a>\
+    				        </div>\
+    				        <div class="auth-facebook buttonbar" >\
+    				        	<a id="auth-facebook" class="button" href="#">Authenticate with facebook</a>\
+    				        	<span>In order to use this app you need to authenticate with facebook</span>\
+    				        </div>\
+    				        <form class="album-settings" >\
+    				        	<div class="status">Connecting to Facebook ...</div>\
+    				        	<div class="profile">\
+    				        		<div class="profile-pic"></div>\
+    				        		<div class="fb-user">\
+    				        			<h2>User Name</h2>\
+    				        			<div class="change-user">Not you? <a href="#" id="f2f-logout">Change account</a></div>\
+    				        		</div>\
+    				        	</div>\
+    				        	<div class="album-information">\
+    				        		<input type="text" id="album-name" placeholder="Your album name" />\
+    				        		<textarea id="album-description" placeholder="Your album description"></textarea>\
+    				        	</div>\
+    				        	<div class="album-url">\
+    				        		<div class="switch">\
+    				        			<a class="toggle" data-state="off" id="add-to-photo" href="#" title="Toggle me"></a>\
+    				        			<span>Add gallery link to each photo</span>\
+    				        		</div>\
+    				        		<div class="switch">\
+    				        			<a class="toggle" data-state="off" id="add-to-album" href="#" title="Toggle me"></a>\
+    				        			<span>Add gallery link to album description</span>\
+    				        		</div>\
+    				        		<input type="text" id="album-url" placeholder="e.g. www.flickr.com/photos/[username]" disabled="disabled" />\
+    				        	</div>\
+    				        	<div class="buttonbar">\
+    				        		<a id="init-upload" class="button" href="#">Upload to Facebook</a>\
+    				        		<a class="close-bookmarklet" href="#">or close this bookmarklet</a>\
+    				        	</div>\
+    				        </form>\
+    					</div>\
+    				</div>\
 				</div>\
 			</div>';
 			
@@ -376,11 +380,11 @@
 				maxHeight = 2 * dropHeight;
 			}
 			
-			// animate dropzone to new height
+
 			$('#f2f-dropzone').stop().animate({ 
 				height : maxHeight 
 			}, 800, 'easeInOutQuart', function(){
-				if(!firstUpload)
+    			 if(!firstUpload)
 					$('#f2f-facebook .album-settings').addClass('loaded');
 			}).attr('data-state', 'opened'); 
 			$('body').stop().animate({ 
@@ -559,12 +563,15 @@
 			firstUpload = false;
 			$('.album-settings').removeClass('loaded');
 			$('#f2f-facebook').removeClass('disabled');
-			$('#f2f-dropzone').empty().animate({
+			$('#f2f-dropzone .drop-indicator').css({ display : 'none' });
+			$('#f2f-dropzone .drop').remove();
+			$('#f2f-dropzone').animate({
 				height : minimizedHeight
 			}, 1000, 'easeInOutQuart', function(){
-				var success = $('<div id="f2f-success"><span>Your photos have been uploaded to Facebook</span></div>');
+				var success = $('<div id="f2f-success"><span>Your photos have been uploaded to Facebook <a class="close-bookmarklet" href="#">Close</a></span></div>');
+				$('#f2f-workingarea').addClass('uploadDone');
 				$('#f2f-dropzone').append(success);
-				$('.init-facebook').fadeIn(500);
+				$('#f2f-dropzone').unbind('mousedown').die();
 			});
 			
 			$('body').animate({
@@ -630,13 +637,12 @@
 	    $('#init-facebook').live('click', function(e){
 	    	e.preventDefault();
 	    	
-	    	$(this).parent().fadeOut(500);
+	    	$(this).parent().hide();
 	    	$('.drop-indicator').hide();
 	    	
 	    	if(firstUpload){
 		    	$('#f2f-facebook .album-settings').addClass('init');
-		    	
-		    	
+		  
 		    	run_fb();
 		    	
 		    	loadSession();
@@ -684,9 +690,7 @@
 			e.preventDefault();
 	    	if(validateUploadForm())
 	    		initFacebookUpload();
-	    });
-			
-			
+	    });			
 		
 			
 		// initialize dropzone
