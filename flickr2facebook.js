@@ -191,8 +191,8 @@
 		// make flickr photos draggable	
 		function dragifyFlickrPhotos(){	
 		
-			$('#photo-drag-proxy, .facade-of-protection').remove();  
-			  
+			$('#photo-drag-proxy, .facade-of-protection, .spaceball').remove();  
+						  
 			$('img').not('.drop-src, .buddyicon, .BuddyIconX').each( function (e){
 				var source = $(this).attr('src');
 			
@@ -293,10 +293,10 @@
 		
 		// load session and append to dropzone
 		function loadSession(){
-			
+			console.log('load session');
 			// read local storage
 			var session = getSession();
-      if (session == null) return;
+			if (session == null) return;
 
 			// add drops to dropzone
 			for(var i = 0; i < session.length; i++){
@@ -442,8 +442,10 @@
 		    
 		    if (isFacebookified()) {
 		    	// connect to facebook
-		        fb_connect();
+		        FB.getLoginStatus(updateFacebookUI);
+			    FB.Event.subscribe('auth.statusChange', updateFacebookUI);	
 		     } else {	
+		          console.log('load facebook api');
 		    	var root_node = document.createElement('div');
 		    	root_node.id = 'fb-root';
 		    	document.getElementsByTagName('body')[0].appendChild(root_node);
@@ -462,7 +464,7 @@
 		
 		// call FB.init and get login status
 		function fb_connect(){
-            
+
             // facebook connect configuration
 			window.fbAsyncInit = function() {
 			    FB.init({ appId: '353631031369003', 
@@ -636,6 +638,7 @@
 	    
 	    $('#init-facebook').live('click', function(e){
 	    	e.preventDefault();
+	    	console.log('click ###');
 	    	
 	    	$(this).parent().hide();
 	    	$('.drop-indicator').hide();
@@ -665,17 +668,32 @@
 
 		});
 		
+		
+		
 		$('.close-bookmarklet').live('click', function(e){
 			e.preventDefault();
+			
 			$('#f2f-overlay').fadeOut(1000, function(){
-				$(this).remove();
+				$(this).empty().remove();
 				$('body').animate({
 					paddingTop : originalPageSettings['paddingTop']
 				}, 1000, 'easeInOutQuart', function(){ 
-					// detach events, clean up 	
+					// detach events, clean up 
+					$('#init-facebook').die();
+        			$('.drop').die();
+        			$('#f2f-dropzone').die();
+        			$('.drop textarea').die();
+        			$('#clear-session').die();
+        			$('#f2f-overlay .toggle').die();
+        			$('#f2f-logout').die();
+        			$('#init-upload').die();	
 				});
+				
+				
 			});
 		});
+		
+		
 		
 		$('#f2f-logout').live('click', function(e){
 			e.preventDefault();
@@ -740,6 +758,8 @@
 				}
 			});
 			
+			
+			
 			// add hover effect for drops when only when user is not drawing selection
 			// jquery solution because of issue with css hover when drawing selection
 			$('.drop')
@@ -801,7 +821,7 @@
 				e.preventDefault();
 				if($(this).attr('data-state') == 'off'){
 					$(this).attr('data-state', 'on');
-					$('#album-url').removeAttr('disabled');
+					$('#album-url').removeAttr('disabled').focus();
 				}else{
 					$(this).attr('data-state', 'off');
 					if($('.toggle[data-state="on"]').length == 0)
