@@ -37,9 +37,7 @@
     return;
   }
   
-  
-
-		
+  		
 	console.log('init Flickr2Facebook ...');	
 	
 	var libraries = [
@@ -293,7 +291,6 @@
 		
 		// load session and append to dropzone
 		function loadSession(){
-			console.log('load session');
 			// read local storage
 			var session = getSession();
 			if (session == null) return;
@@ -445,7 +442,6 @@
 		        FB.getLoginStatus(updateFacebookUI);
 			    FB.Event.subscribe('auth.statusChange', updateFacebookUI);	
 		     } else {	
-		          console.log('load facebook api');
 		    	var root_node = document.createElement('div');
 		    	root_node.id = 'fb-root';
 		    	document.getElementsByTagName('body')[0].appendChild(root_node);
@@ -638,7 +634,6 @@
 	    
 	    $('#init-facebook').live('click', function(e){
 	    	e.preventDefault();
-	    	console.log('click ###');
 	    	
 	    	$(this).parent().hide();
 	    	$('.drop-indicator').hide();
@@ -817,7 +812,6 @@
 			
 			// switch toggles
 			$('#f2f-overlay .toggle').live('click', function(e){
-				console.log('click');
 				e.preventDefault();
 				if($(this).attr('data-state') == 'off'){
 					$(this).attr('data-state', 'on');
